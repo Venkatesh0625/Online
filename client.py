@@ -1,4 +1,4 @@
-import socket
+import socke
 import sys
 import pickle
 messages = ['This is the message','It will be sent','in parts']
