@@ -1,11 +1,21 @@
 import pickle
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.asymmetric import rsa
+import socket
+
 class text:
     def __init__(self):
-        self.sender_ip = '127.0.0.1'
-        self.receiver_ip = '127.0.0.1'
-        self.encoded_msg = ''
+        self.sender_ip = 
+        self.destination_ip = ''
+        encoded_message = ''
+        message = ''
+    
+    def encrypt(self,public_key):
+        self.encoded_message = pickle.loads(public_key.encrypt(pickle.dumps(message)))
+        
+    def decrypt(self,private_key):
+        self.message = pickle.loads(private_key.decrypt(pickle.dumps()))
+        
+    def clear_text(self):
         self.message = ''
+    
     
         
