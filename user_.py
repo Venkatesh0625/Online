@@ -2,7 +2,7 @@ import socket
 import pickle
 from server import *
 from client import *
-from text import *
+from text import*
 import os
 from Crypto.Cipher import AES,DES3
 from Crypto import Random
