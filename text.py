@@ -3,7 +3,7 @@ import socket
 
 class text:
     def __init__(self):
-        self.sender_ip = 
+        self.sender_ip = ''
         self.destination_ip = ''
         encoded_message = ''
         message = ''

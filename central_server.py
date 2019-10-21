@@ -10,15 +10,6 @@ from Crypto import Random
 from Crypto.Hash import SHA256 as sha256
 from Crypto.PublicKey import RSA as rsa
 
-class single_user_data:
-    def __init__(self):
-        self.ip_addr = ''
-        self.key = ''
-        
-    def put_input(self,ip_addr,key):
-        self.ip_addr = ip_addr
-        self.key = key.exportKey(format = 'PEM',passphrase = None,pkcs = 1)
-        
 class central_socket:
     def __init__(self):
         self.data = ip_database.ip_data()
@@ -51,7 +42,8 @@ class central_socket:
                     if data_recv:
                         if s not in self.output:
                             self.output.append(s)
-                        #Checking whether the data is a private key
+                        #Checking whether the data is a private key class 
+                        #Storing ip_address of the node by getting the 
                         try:
                             got = rsa.importKey(data_recv,passphrase = None)
                             if isinstance(got,Crypto.PublicKey.RSA._RSAobj):

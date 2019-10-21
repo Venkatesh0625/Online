@@ -32,4 +32,24 @@ class ip_data:
     def get_private_key(self,ip_addr):
         for i in self.data:
             if i[0] == ip_addr:
+                #returning the public key
                 return str(i[1].exportKey(format = 'PEM',passphrase = None,pkcs = 1))
+        return 'ip doesn\'t exists'
+    def get_tree(self,ip_addr):
+        n = len(self.data)
+        idx = 0 
+        for i in range(len(self.data)):
+            if self.data[0] == ip_addr:
+                #getting the index of the given ip in the ip data
+                idx = i
+                break
+        #Making the index of 2**n order 
+        arr = [self.data[(idx + 2**i)%n][0] for i in range(ceil(log(n,2)))]
+        return arr
+                
+            
+        
+                
+        
+                
+        
