@@ -52,8 +52,6 @@ class central_socket:
                 client.setblocking(0)
                 self.inputs.append(client)
                 self.data_q[client] = queue.Queue()
-            else:
-                this.helper3()
     
     def helper2(self):
         for s in self.to_write:
@@ -61,15 +59,7 @@ class central_socket:
                 next_msg = self.data_q[s].get_nowait()
             except queue.Empty:
                 self.output.remove(s)
-            else:
-                s.send(next_msg)
         
-        for s in self.to_rectify:
-                inputs.remove(s)
-                if s in outputs:
-                    self.outputs.remove(s)
-                s.close()
-                del self.data_q[s]
 
     def connect_(self):
         while self.inputs:
