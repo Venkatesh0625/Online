@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Scrollbar
 
 root = Tk()
 root.geometry("300x400")

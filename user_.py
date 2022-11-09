@@ -42,7 +42,7 @@ class user:
                 self.from_msg.decrypt()
                 try:
                     self.messages[self.from_msg.sender_ip].append(self.from_msg.message)
-                except:
+                except ValueError:
                     self.messages[self.from_msg.sender_ip] = [self.from_msg.message]
             else:
                 temp_client = find_next_path()

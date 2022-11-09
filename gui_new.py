@@ -1,6 +1,6 @@
 try:
     import Tkinter as tk
-except:
+except ImportError:
     import tkinter as tk
     
 class SampleApp(tk.Tk):
