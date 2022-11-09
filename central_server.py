@@ -49,7 +49,7 @@ class central_socket:
                             if isinstance(got,Crypto.PublicKey.RSA._RSAobj):
                                 self.data.add_ip(s.getpeername(),got) 
                         #Will get an error if it is not a Crypto.publickey object 
-                        except:
+                        except ValueError:
                             got = pickle.loads(data_recv)
     
                             if got[:12] =='predecessor$':
