@@ -59,57 +59,31 @@ class table:
         return(self.zag(root))
     
     def splay(self, root, data):
-        if(root!=None):
-            self.height+=1
-            r=ip2int(root.ip)
-            d=ip2int(data)
-            if(d!=r):
-                if(d<r):
-                    root.left=self.splay(root.left, data)
-                else:
-                    root.right=self.splay(root.right, data)
-                self.flag+=1
-                self.height-=1
+        self.height+=1
+        r=ip2int(root.ip)
+        d=ip2int(data)
+        if(d!=r):
+            if(d<r):
+                root.left=self.splay(root.left, data)
             else:
-                self.height-=1
-                return(root)
-            if(self.flag==2):
-                if(d<r):
-                    c1=ip2int(root.left.ip)
-                    if(d<c1):
-                        root=self.zigzig(root)
-                    else:
-                        root=self.zigzag(root)
-                else:
-                    c2=ip2int(root.right.ip)
-                    if(d>c2):
-                        root=self.zagzag(root)
-                    else:
-                        root=self.zagzig(root)
-                self.flag=0
-            elif(self.height==0):
-                if(d<r):
-                    root=self.zig(root)
-                else:
-                    root=self.zag(root)
-                self.flag=0
+                root.right=self.splay(root.right, data)
+            self.flag+=1
+            self.height-=1
+        else:
+            self.height-=1
+            return(root)
         return(root)
+
     def search(self, root, data, pred):
-        if(root!=None):
-            d=ip2int(data)
-            r=ip2int(root.ip)
-            if(d < r):
-                if(root.left!=None):
-                    return(self.search(root.left, data, pred))
-                else:
-                    return(pred.ip)
-            elif(d > r):
-                if(root.right!=None):
-                    return(self.search(root.right, data, root))
-                else:
-                    return(root.ip)
-            else:
-                return(root.ip)
+        d=ip2int(data)
+        r=ip2int(root.ip)
+        if(d < r and root.left!=None):
+            return(self.search(root.left, data, pred))
+        elif(d > r and root.right!=None):
+            return(self.search(root.right, data, root))
+        else:
+            return(root.ip)
+
     def getmin(self, root):
         if(root!=None and root.left!=None):
             return(self.getmin(root.left))
