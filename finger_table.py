@@ -88,12 +88,12 @@ class table:
         if(root!=None and root.left!=None):
             return(self.getmin(root.left))
         else:
-            return root.ip            
+            return None            
     def getmax(self, root):
         if(root!=None and root.right!=None):
             return(self.getmax(root.right))
         else:
-            return root.ip
+            return None
     def find_path(self, ip):
         min_node=self.getmin(self.root)
         min_data=ip2int(min_node)
@@ -121,6 +121,6 @@ ip = ["6","7","9","1"]
 for i in ip:
     t.insert(i)
 t.inorder()
-ip="123.34.45.65"
+ip=""
 t.find_path(ip)
 print(t.root.ip)

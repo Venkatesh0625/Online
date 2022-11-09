@@ -18,7 +18,7 @@ class user:
         self.local_ip = socket.gethostbyname(socket.gethostname())
         self.client = client()
         self.friends = []
-        self.private_key = rsa.generate(1024)
+        self.private_key = rsa.generate(2048)
         self.public_key = self.private_key.publickey()
         self.to_msg = None
         self.from_msg = None
