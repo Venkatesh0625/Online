@@ -1,9 +1,9 @@
 import socket    
 import pickle
-from server import *
-from client import *
-from text import *
-from finger_table import *
+from server import Server
+from client import Client
+from text import text
+from finger_table import node, table
 import os
 from Crypto.Cipher import AES,DES3
 from Crypto import Random
@@ -18,13 +18,13 @@ class user:
         self.local_ip = socket.gethostbyname(socket.gethostname())
         self.client = client()
         self.friends = []
-        self.private_key = rsa.generate(1024)
+        self.private_key = rsa.generate(2048)
         self.public_key = self.private_key.publickey()
         self.to_msg = None
         self.from_msg = None
         self.messages = {}
         
-    def send_message(self,ip_addr,message):
+    def send_message(self,message):
         self.to_msg = text()
         self.to_msg.message = message
         self.to_msg.encrypt()
@@ -42,7 +42,7 @@ class user:
                 self.from_msg.decrypt()
                 try:
                     self.messages[self.from_msg.sender_ip].append(self.from_msg.message)
-                except:
+                except ValueError:
                     self.messages[self.from_msg.sender_ip] = [self.from_msg.message]
             else:
                 temp_client = find_next_path()
